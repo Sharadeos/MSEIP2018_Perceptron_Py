@@ -1,10 +1,12 @@
 import random
 
+#alpha
 learningRate = 0.05
 epoch = 1
 input = 4
 weights = []
-bias = 0
+theta = 0
+bias = -1
 correctCounter = 0
 epochcounter = 0
 
@@ -16,7 +18,7 @@ def signActivation(input):
 		return -1.0;
 		
 def backPropagation(inputlist):
-	global bias
+	global theta
 	global weights
 	loop = 0
 	X = 0
@@ -25,8 +27,8 @@ def backPropagation(inputlist):
 		X += inputlist[loop] * weights[loop]
 		loop+=1
 			
-	X += (-1)*bias
-	#X = (inputlist[0] * weights[0]) + (inputlist[1] * weights[1]) + (inputlist[2] * weights[2]) + (inputlist[3] * weights[3]) - bias
+	X += (bias)*theta
+	#X = (inputlist[0] * weights[0]) + (inputlist[1] * weights[1]) + (inputlist[2] * weights[2]) + (inputlist[3] * weights[3]) - theta
 	Y = signActivation(X)
 	print(X)
 	error = inputlist[4] - Y
@@ -42,7 +44,7 @@ def backPropagation(inputlist):
 	#weights[1] = weights[1] + (learningRate * inputlist[1] * error)
 	#weights[2] = weights[2] + (learningRate * inputlist[2] * error)
 	#weights[3] = weights[2] + (learningRate * inputlist[3] * error)
-	bias += (learningRate * (-1) * error)
+	theta += (learningRate * (-1) * error)
 #we are using global variables right now hence no need to pass the weights
 		#backcount+=1
 	#print("Error: ", error, "Weight 0: ", weights[0], "Weight 1: ", weights[1], "Weight 2: ", weights[2], "Weight 3: ", weights[3])
@@ -50,7 +52,7 @@ def backPropagation(inputlist):
 	
 def checkWeights(inputlist):
 
-	global bias
+	global theta
 	global weights
 	loop = 0
 	X = 0
@@ -59,7 +61,7 @@ def checkWeights(inputlist):
 		X += inputlist[loop] * weights[loop]
 		loop+=1
 			
-	X += (-1)*bias
+	X += (bias)*theta
 	Y = signActivation(X)
 
 	if(Y == inputlist[4]):
@@ -79,9 +81,9 @@ while(count < input):
 	print("Weight",count, ": ", weights[count])
 	count+=1
 
-bias = random.uniform(-1, 1)
+theta = random.uniform(-1, 1)
 	
-print("Bias:",bias)
+print("Theta:",theta)
 
 	
 	
