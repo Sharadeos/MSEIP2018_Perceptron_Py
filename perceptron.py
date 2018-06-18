@@ -1,7 +1,7 @@
 import random
 
 learningRate = 0.05
-epoch = 10
+epoch = 1
 input = 4
 weights = []
 bias = 0
@@ -25,7 +25,7 @@ def backPropagation(inputlist):
 		X += inputlist[loop] * weights[loop]
 		loop+=1
 			
-	X -= bias
+	X += (-1)*bias
 	#X = (inputlist[0] * weights[0]) + (inputlist[1] * weights[1]) + (inputlist[2] * weights[2]) + (inputlist[3] * weights[3]) - bias
 	Y = signActivation(X)
 	print(X)
@@ -59,7 +59,7 @@ def checkWeights(inputlist):
 		X += inputlist[loop] * weights[loop]
 		loop+=1
 			
-	X -= bias
+	X += (-1)*bias
 	Y = signActivation(X)
 
 	if(Y == inputlist[4]):
